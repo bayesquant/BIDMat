@@ -26,7 +26,8 @@ else
 fi
 export JAVA_OPTS="${MEMSIZE} -Xms128M -Dfile.encoding=UTF-8 ${LOG_OPTS} ${JAVA_OPTS}" # Set as much memory as possible
 
-BIDMAT_VERSION=`echo lib/BIDMat-*-cpu-*.jar | sed 's/.*BIDMat-//' | sed 's/-cpu.*\.jar//'`
+#BIDMAT_VERSION=`echo lib/BIDMat-*-cpu-*.jar | sed 's/.*BIDMat-//' | sed 's/-cpu.*\.jar//'`
+BIDMAT_VERSION=2.0.16-cuda9.0beta
 
 OSS=`uname -a`
 if [ "$ARCH" = "" ]; then
@@ -98,5 +99,6 @@ if [ "$1" = "notebook" ]; then
     fi
     ipython notebook --profile=scala --KernelManager.kernel_cmd="$KERNEL_CMD"
 else
+echo ${BIDMAT_ROOT}/scripts/scala/scala -Dscala.repl.maxprintstring=8000 ${userargs} -nobootcp -toolcp "${ALL_LIBS}" -cp "${ALL_LIBS}" -Yrepl-sync -i ${LIBDIR}/bidmat_init.scala ${1}
     ${BIDMAT_ROOT}/scripts/scala/scala -Dscala.repl.maxprintstring=8000 ${userargs} -nobootcp -toolcp "${ALL_LIBS}" -cp "${ALL_LIBS}" -Yrepl-sync -i ${LIBDIR}/bidmat_init.scala ${1}
 fi

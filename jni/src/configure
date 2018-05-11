@@ -6,8 +6,8 @@
 # $CUDA_HOME to the cuda root directory
 #
 
-VERSION="2.0.16-cuda8.0beta"
-DEVVERSION="dev-cuda8.0"
+VERSION="2.0.16-cuda9.0beta"
+DEVVERSION="dev-cuda9.0"
 # Set to one and update the path if you plan to use NVIDIA NCCL
 USE_NCCL=0
 USE_MKL2017=1
@@ -234,7 +234,7 @@ elif [ "$OS" = "linux" ] ; then
           --machine ${MBITS}  -Xcompiler \"-fPIC -c -O2 -g -DNDEBUG\""
 	OBJ="o"
 	OUTFLG="-o "
-	CPPFLAGS="-fPIC -c -O2 -DNDEBUG -DUSE_NCCL=${USE_NCCL} -I$JAVA_HOME/include -I$JAVA_HOME/include/linux -I$BIDMAT_ROOT/jni/include -I$CUDA_HOME/include -I${NCCL_HOME}/src -I/usr/include/x86_64-linux-gnu/c++/$GCC_VERSION"
+	CPPFLAGS="-fPIC -c -O2 -DNDEBUG -DUSE_NCCL=${USE_NCCL} -I$JAVA_HOME/include -I$JAVA_HOME/include/linux -I$BIDMAT_ROOT/jni/include -I$CUDA_HOME/include -I${NCCL_HOME}/src -I$BLAS_ROOT/include -I/usr/include/x86_64-linux-gnu/c++/$GCC_VERSION"
 	CFLAGS="-qopenmp -fPIC -c -O2 -DNDEBUG  -DUSE_MKL2017=${USE_MKL2017} -I$JAVA_HOME/include -I$JAVA_HOME/include/linux -I$BIDMAT_ROOT/jni/include -I$BLAS_ROOT/include -I$BLAS_ROOT/include/${ARCHD}${SUBDIR}"
 	LB="ar rc"    
 	GLD="nvcc -shared"
